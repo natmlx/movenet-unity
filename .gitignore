@@ -1,0 +1,16 @@
+# Unity
+Library/
+Temp/
+obj/
+
+# IDE
+.vscode/
+.gradle/
+.vs/
+
+# NatSuite Framework
+Assets/NatSuite/
+Assets/NatSuite.meta
+
+# Misc
+.DS_Store
