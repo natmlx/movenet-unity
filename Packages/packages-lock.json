@@ -5,7 +5,7 @@
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "6ef9047885c27f157d7c4267ab5343594d0718d1"
+      "hash": "325caa6436c32e355c0016283b4f7611d9762931"
     },
     "com.natsuite.natshare": {
       "version": "git+https://github.com/natsuite/NatShare",
