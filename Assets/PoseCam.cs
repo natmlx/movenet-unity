@@ -35,21 +35,17 @@ namespace NatSuite.Examples {
             // Start the camera preview
             cameraDevice.previewResolution = (1280, 720);
             preview = await cameraDevice.StartRunning();
-            Debug.Log("Started camera preview");
             // Display preview
             visualizer.Render(preview, null);
-            // Create predictor
+            // Fetch the MoveNet model
+            Debug.Log("Fetching model from NatML Hub");
             modelData = await MLModelData.FromHub("@natsuite/movenet-lightning");
             model = modelData.Deserialize();
             predictor = new MoveNetPredictor(model).ToAsync();
-            Debug.Log("Created predictor");
         }
 
         async void Update () {
-            // Check that the camera is running
-            if (!preview)
-                return;
-            // Check that the predictor has been loaded
+            // Check that the model has been loaded
             if (predictor == null)
                 return;
             // Check that the predictor is ready for more predictions
