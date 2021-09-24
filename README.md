@@ -4,13 +4,14 @@ This is an example project which integrates the NatML deep learning API with the
 
 ## Requirements
 - Unity 2019.2+
-- [ML Pose 1.0+](https://github.com/natsuite/ML-Pose)
+- [NatML 1.0+](https://github.com/natsuite/NatML)
 - [NatDevice 1.1+](https://assetstore.unity.com/packages/tools/integration/natdevice-media-device-api-162053)
-- [NatCorder 1.7+](https://assetstore.unity.com/packages/tools/integration/natcorder-video-recording-api-102645)
-- [NatShare 1.2+](https://github.com/natsuite/NatShare)
+- [@natsuite/movenet](https://hub.natml.ai/@natsuite/movenet)
 
 ## Supported Platforms
 - Android API level 24+
 - iOS 13+
 - macOS 10.15+
 - Windows 10 (64-bit)
+
+Thank you very much!

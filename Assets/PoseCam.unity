@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -250,6 +250,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 344a29fbf545e4b4291b27110c1775a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  accessKey: 
   visualizer: {fileID: 1331141382}
 --- !u!4 &452010844
 Transform:
@@ -488,7 +489,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1331141380}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9bb6949a52934884812696264ea162b, type: 3}
+  m_Script: {fileID: 11500000, guid: d03f81387a6c94859acbf6fa5c4680bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   keypoint: {fileID: 1626084001}
@@ -618,7 +619,7 @@ GameObject:
   - component: {fileID: 1626084003}
   - component: {fileID: 1626084002}
   m_Layer: 5
-  m_Name: Anchor
+  m_Name: Keypoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

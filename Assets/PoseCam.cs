@@ -11,17 +11,21 @@ namespace NatSuite.Examples {
     using NatSuite.ML.Features;
     using NatSuite.ML.Vision;
     using NatSuite.ML.Visualizers;
-    using NatSuite.ML.Extensions;
 
     public class PoseCam : MonoBehaviour {
 
-        public MLBodyPoseVisualizer visualizer;
+        [Header(@"NatML Hub")]
+        public string accessKey;
+
+        [Header(@"UI")]
+        public MoveNetVisualizer visualizer;
 
         private MLModelData modelData;
         private MLModel model;
-        private MLAsyncPredictor<MoveNetPredictor.Pose> predictor;
+        private MoveNetPredictor predictor;
         private CameraDevice cameraDevice;
-        private Texture2D preview;
+        private Texture2D previewTexture;
+        private byte[] pixelBuffer;
 
         async void Start () {
             // Request camera permissions
@@ -34,29 +38,32 @@ namespace NatSuite.Examples {
             cameraDevice = query.current as CameraDevice;
             // Start the camera preview
             cameraDevice.previewResolution = (1280, 720);
-            preview = await cameraDevice.StartRunning();
+            previewTexture = await cameraDevice.StartRunning();
+            pixelBuffer = previewTexture.GetRawTextureData<byte>().ToArray();
             // Display preview
-            visualizer.Render(preview, null);
+            visualizer.Render(previewTexture, null);
             // Fetch the MoveNet model
             Debug.Log("Fetching model from NatML Hub");
-            modelData = await MLModelData.FromHub("@natsuite/movenet-lightning");
+            modelData = await MLModelData.FromHub("@natsuite/movenet", accessKey);
+            // Deserialize the model
             model = modelData.Deserialize();
-            predictor = new MoveNetPredictor(model).ToAsync();
+            // Create the MoveNet predictor
+            predictor = new MoveNetPredictor(model);
         }
 
-        async void Update () {
+        void Update () {
             // Check that the model has been loaded
             if (predictor == null)
                 return;
-            // Check that the predictor is ready for more predictions
-            if (!predictor.readyForPrediction)
-                return;
+            // Update the pixel buffer to avoid allocating memory
+            previewTexture.GetRawTextureData<byte>().CopyTo(pixelBuffer);
+            // Create the input feature
+            var inputFeature = new MLImageFeature(pixelBuffer, previewTexture.width, previewTexture.height);
+            (inputFeature.mean, inputFeature.std) = modelData.normalization;
             // Detect
-            var input = new MLImageFeature(preview);
-            (input.mean, input.std) = modelData.normalization;
-            var pose = await predictor.Predict(input);
+            var pose = predictor.Predict(inputFeature);
             // Visualize
-            visualizer.Render(preview, pose);
+            visualizer.Render(previewTexture, pose);
         }
 
         void OnDisable () {
@@ -65,7 +72,6 @@ namespace NatSuite.Examples {
                 cameraDevice.StopRunning();
             // Dispose model
             model?.Dispose();
-            predictor?.Dispose();
         }
     }
 }

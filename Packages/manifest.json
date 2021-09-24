@@ -1,7 +1,13 @@
 {
+  "scopedRegistries": [
+    {
+      "name": "NatSuite Framework",
+      "url": "https://registry.npmjs.com",
+      "scopes": ["api.natsuite"]
+    }
+  ],
   "dependencies": {
-    "com.natsuite.ml.pose": "git+https://github.com/natsuite/ML-Pose",
-    "com.natsuite.natshare": "git+https://github.com/natsuite/NatShare",
+    "api.natsuite.natml": "1.0.4",
     "com.unity.collab-proxy": "1.2.16",
     "com.unity.ide.rider": "1.2.1",
     "com.unity.ide.vscode": "1.2.3",

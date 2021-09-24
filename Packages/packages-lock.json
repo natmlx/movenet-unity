@@ -1,18 +1,11 @@
 {
   "dependencies": {
-    "com.natsuite.ml.pose": {
-      "version": "git+https://github.com/natsuite/ML-Pose",
+    "api.natsuite.natml": {
+      "version": "1.0.4",
       "depth": 0,
-      "source": "git",
+      "source": "registry",
       "dependencies": {},
-      "hash": "325caa6436c32e355c0016283b4f7611d9762931"
-    },
-    "com.natsuite.natshare": {
-      "version": "git+https://github.com/natsuite/NatShare",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "46e0ec009f8a9833e3e88881e934fa6fcce43beb"
+      "url": "https://registry.npmjs.com"
     },
     "com.unity.collab-proxy": {
       "version": "1.2.16",

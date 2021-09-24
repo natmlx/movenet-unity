@@ -12,5 +12,9 @@ obj/
 Assets/NatSuite/
 Assets/NatSuite.meta
 
+# Predictor packages
+Assets/ML/
+Assets/ML.meta
+
 # Misc
 .DS_Store

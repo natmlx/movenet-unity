@@ -9,10 +9,10 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{859e9454-1914-a9ef-1446-4f70aed65291}</ProjectGuid>
+    <ProjectGuid>{14174e28-8ea8-5595-6b5e-e674a24dd810}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <AssemblyName>Assembly-CSharp</AssemblyName>
+    <AssemblyName>NatSuite.ML.Vision.MoveNet</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <BaseDirectory>.</BaseDirectory>
@@ -26,7 +26,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169</NoWarn>
-    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup>
     <NoConfig>true</NoConfig>
@@ -36,13 +36,10 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\ML\movenet\Sample\MoveNetSample.cs" />
-     <Compile Include="Assets\ML\movenet\Sample\MoveNetVisualizer.cs" />
-     <Compile Include="Assets\NatSuite\Examples\HotMic\ClipRecorder.cs" />
-     <Compile Include="Assets\NatSuite\Examples\HotMic\HotMic.cs" />
-     <Compile Include="Assets\NatSuite\Examples\HotMic\MicrophoneButton.cs" />
-     <Compile Include="Assets\NatSuite\Examples\MiniCam\MiniCam.cs" />
-     <Compile Include="Assets\PoseCam.cs" />
+     <Compile Include="Assets\ML\movenet\Runtime\MoveNetPose.cs" />
+     <Compile Include="Assets\ML\movenet\Runtime\MoveNetPredictor.cs" />
+     <Compile Include="Assets\ML\movenet\Runtime\OneEuroFilter.cs" />
+     <None Include="Assets\ML\movenet\Runtime\NatSuite.ML.Vision.MoveNet.asmdef" />
     <Reference Include="UnityEngine">
         <HintPath>/Applications/Unity/Hub/Editor/2019.4.28f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
@@ -219,6 +216,21 @@
     </Reference>
     <Reference Include="UnityEditor">
         <HintPath>/Applications/Unity/Hub/Editor/2019.4.28f1/Unity.app/Contents/Managed/UnityEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.VR">
+        <HintPath>/Applications/Unity/Hub/Editor/2019.4.28f1/Unity.app/Contents/UnityExtensions/Unity/UnityVR/Editor/UnityEditor.VR.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Graphs">
+        <HintPath>/Applications/Unity/Hub/Editor/2019.4.28f1/Unity.app/Contents/Managed/UnityEditor.Graphs.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.OSXStandalone.Extensions">
+        <HintPath>/Applications/Unity/Hub/Editor/2019.4.28f1/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Android.Extensions">
+        <HintPath>/Applications/Unity/Hub/Editor/2019.4.28f1/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions">
+        <HintPath>/Applications/Unity/Hub/Editor/2019.4.28f1/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.iOS.Extensions.Xcode">
         <HintPath>/Applications/Unity/Hub/Editor/2019.4.28f1/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
@@ -571,49 +583,17 @@
     <Reference Include="mscorlib">
         <HintPath>/Applications/Unity/Hub/Editor/2019.4.28f1/Unity.app/Contents/NetStandard/compat/2.0.0/shims/netfx/mscorlib.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Timeline.Editor">
-        <HintPath>/Users/yusuf/Documents/Projects/Pose-Cam/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.VSCode.Editor">
-        <HintPath>/Users/yusuf/Documents/Projects/Pose-Cam/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
-    </Reference>
     <Reference Include="NatSuite.ML">
         <HintPath>/Users/yusuf/Documents/Projects/Pose-Cam/Library/ScriptAssemblies/NatSuite.ML.dll</HintPath>
-    </Reference>
-    <Reference Include="NatSuite.ML.Editor">
-        <HintPath>/Users/yusuf/Documents/Projects/Pose-Cam/Library/ScriptAssemblies/NatSuite.ML.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.TextMeshPro.Editor">
-        <HintPath>/Users/yusuf/Documents/Projects/Pose-Cam/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-        <HintPath>/Users/yusuf/Documents/Projects/Pose-Cam/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Timeline">
-        <HintPath>/Users/yusuf/Documents/Projects/Pose-Cam/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.CollabProxy.Editor">
-        <HintPath>/Users/yusuf/Documents/Projects/Pose-Cam/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Rider.Editor">
-        <HintPath>/Users/yusuf/Documents/Projects/Pose-Cam/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.TextMeshPro">
-        <HintPath>/Users/yusuf/Documents/Projects/Pose-Cam/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
         <HintPath>/Users/yusuf/Documents/Projects/Pose-Cam/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.UI">
+        <HintPath>/Users/yusuf/Documents/Projects/Pose-Cam/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="NatSuite.Devices.csproj">
-      <Project>{13590d87-2a74-2ee8-bcbe-9f958ca9835d}</Project>
-      <Name>NatSuite.Devices</Name>
-    </ProjectReference>
-    <ProjectReference Include="NatSuite.ML.Vision.MoveNet.csproj">
-      <Project>{14174e28-8ea8-5595-6b5e-e674a24dd810}</Project>
-      <Name>NatSuite.ML.Vision.MoveNet</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
