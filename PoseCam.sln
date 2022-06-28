@@ -1,0 +1,21 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{800b2ebb-7fb6-ee2a-0eff-70a2f35d4a99}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NatML.Vision.MoveNet", "NatML.Vision.MoveNet.csproj", "{b29a1b5c-92a7-6408-f803-b30766137311}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{800b2ebb-7fb6-ee2a-0eff-70a2f35d4a99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{800b2ebb-7fb6-ee2a-0eff-70a2f35d4a99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{b29a1b5c-92a7-6408-f803-b30766137311}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{b29a1b5c-92a7-6408-f803-b30766137311}.Debug|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

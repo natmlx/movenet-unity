@@ -1,35 +1,37 @@
 ﻿/* 
-*   Pose Cam
-*   Copyright (c) 2021 Yusuf Olokoba.
+*   PoseCam
+*   Copyright (c) 2022 NatML Inc. All Rights Reserved.
 */
 
-namespace NatSuite.Examples {
+namespace NatML.Examples {
 
     using UnityEngine;
-    using NatSuite.Devices;
-    using NatSuite.ML;
-    using NatSuite.ML.Features;
-    using NatSuite.ML.Vision;
-    using NatSuite.ML.Visualizers;
+    using UnityEngine.UI;
+    using NatML;
+    using NatML.Devices;
+    using NatML.Devices.Outputs;
+    using NatML.Features;
+    using NatML.Vision;
+    using NatML.Visualizers;
 
     public class PoseCam : MonoBehaviour {
 
-        [Header(@"NatML Hub")]
-        public string accessKey;
-
         [Header(@"UI")]
+        public RawImage rawImage;
+        public AspectRatioFitter aspectFitter;
         public MoveNetVisualizer visualizer;
+
+        private CameraDevice cameraDevice;
+        private TextureOutput previewTextureOutput;
 
         private MLModelData modelData;
         private MLModel model;
         private MoveNetPredictor predictor;
-        private CameraDevice cameraDevice;
-        private Texture2D previewTexture;
-        private byte[] pixelBuffer;
 
         async void Start () {
             // Request camera permissions
-            if (!await MediaDeviceQuery.RequestPermissions<CameraDevice>()) {
+            var permissionStatus = await MediaDeviceQuery.RequestPermissions<CameraDevice>();
+            if (permissionStatus != PermissionStatus.Authorized) {
                 Debug.LogError(@"User did not grant camera permissions");
                 return;
             }
@@ -38,13 +40,15 @@ namespace NatSuite.Examples {
             cameraDevice = query.current as CameraDevice;
             // Start the camera preview
             cameraDevice.previewResolution = (1280, 720);
-            previewTexture = await cameraDevice.StartRunning();
-            pixelBuffer = previewTexture.GetRawTextureData<byte>().ToArray();
-            // Display preview
-            visualizer.Render(previewTexture, null);
+            previewTextureOutput = new TextureOutput();
+            cameraDevice.StartRunning(previewTextureOutput);
+            // Display the preview texture
+            var previewTexture = await previewTextureOutput;
+            rawImage.texture = previewTexture;
+            aspectFitter.aspectRatio = (float)previewTexture.width / previewTexture.height;
             // Fetch the MoveNet model
-            Debug.Log("Fetching model from NatML Hub");
-            modelData = await MLModelData.FromHub("@natsuite/movenet", accessKey);
+            Debug.Log("Fetching model from NatML...");
+            modelData = await MLModelData.FromHub("@natsuite/movenet");
             // Deserialize the model
             model = modelData.Deserialize();
             // Create the MoveNet predictor
@@ -52,13 +56,12 @@ namespace NatSuite.Examples {
         }
 
         void Update () {
-            // Check that the model has been loaded
+            // Check that the predictor has been created
             if (predictor == null)
                 return;
-            // Update the pixel buffer to avoid allocating memory
-            previewTexture.GetRawTextureData<byte>().CopyTo(pixelBuffer);
             // Create the input feature
-            var inputFeature = new MLImageFeature(pixelBuffer, previewTexture.width, previewTexture.height);
+            var previewTexture = previewTextureOutput.texture;
+            var inputFeature = new MLImageFeature(previewTexture.GetRawTextureData<byte>(), previewTexture.width, previewTexture.height);
             (inputFeature.mean, inputFeature.std) = modelData.normalization;
             // Detect
             var pose = predictor.Predict(inputFeature);
@@ -67,9 +70,6 @@ namespace NatSuite.Examples {
         }
 
         void OnDisable () {
-            // Stop preview
-            if (cameraDevice?.running ?? false)
-                cameraDevice.StopRunning();
             // Dispose model
             model?.Dispose();
         }
