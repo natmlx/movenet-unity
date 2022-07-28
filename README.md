@@ -1,12 +1,11 @@
-# Pose Cam
+# MoveNet Sample
+
+![demo](demo.gif)
 
 This is an example project which integrates the NatML deep learning API with the NatDevice media device API for realtime pose detection.
 
 ## Requirements
 - Unity 2020.3+
-- [NatML 1.0.12+](https://github.com/natmlx/NatML)
-- [NatDevice 1.2.2+](https://github.com/natmlx/NatDevice)
-- [@natsuite/movenet](https://hub.natml.ai/@natsuite/movenet)
 
 ## Supported Platforms
 - Android API level 24+
@@ -15,7 +14,7 @@ This is an example project which integrates the NatML deep learning API with the
 - Windows 10 (64-bit)
 
 ## Resources
-- Join the [NatML community on Discord](https://discord.gg/y5vwgXkz2f).
+- Join the [NatML community on Discord](https://hub.natml.ai/community).
 - See the [NatML documentation](https://docs.natml.ai/unity).
 - See the [NatDevice documentation](https://docs.natml.ai/natdevice).
 - Check out [NatML on GitHub](https://github.com/natmlx).
