@@ -3,7 +3,7 @@
 *   Copyright (c) 2022 NatML Inc. All Rights Reserved.
 */
 
-namespace NatML.Visualizers {
+namespace NatML.Examples.Visualizers {
 
     using System.Collections.Generic;
     using UnityEngine;

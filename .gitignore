@@ -2,6 +2,7 @@
 Library/
 Temp/
 obj/
+Logs/
 
 # IDE
 .vscode/
@@ -11,6 +12,7 @@ obj/
 # NatML
 Assets/NatML/
 Assets/NatML.meta
+ProjectSettings/NatMLHub.asset
 
 # Misc
 .DS_Store

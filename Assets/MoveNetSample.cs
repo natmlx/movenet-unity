@@ -1,5 +1,5 @@
 ﻿/* 
-*   PoseCam
+*   MoveNet
 *   Copyright (c) 2022 NatML Inc. All Rights Reserved.
 */
 
@@ -12,9 +12,9 @@ namespace NatML.Examples {
     using NatML.Devices.Outputs;
     using NatML.Features;
     using NatML.Vision;
-    using NatML.Visualizers;
+    using Visualizers;
 
-    public class PoseCam : MonoBehaviour {
+    public class MoveNetSample : MonoBehaviour {
 
         [Header(@"UI")]
         public RawImage rawImage;

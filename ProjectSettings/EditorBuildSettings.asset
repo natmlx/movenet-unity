@@ -6,10 +6,10 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/PoseCam.unity
+    path: Assets/MoveNetSample.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects:
-    ai.natml.hub.settings: {fileID: 11400000, guid: 8cd0a66c378a047bea6b807d9f184071,
+    ai.natml.hub.settings: {fileID: 11400000, guid: 633f8a0c36c194ecebcf5a3dc332a64b,
       type: 2}
-    ai.natml.natdevice.settings: {fileID: 11400000, guid: d66534dd8a5a9402ca89deb9978de47d,
+    ai.natml.natdevice.settings: {fileID: 11400000, guid: e4c03786eb0c540b2bfb214501a8f660,
       type: 2}
