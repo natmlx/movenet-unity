@@ -2,7 +2,12 @@
 
 ![demo](demo.gif)
 
-This is an example project which integrates the NatML deep learning API with the NatDevice media device API for realtime pose detection.
+Sample project which integrates the NatML deep learning API with the NatDevice media device API for realtime pose detection.
+
+## Setup Instructions
+Retrieve your access key from [NatML Hub](https://hub.natml.ai/profile) and add it to your Project Settings. Note that fetching the MoveNet ML model from NatML Hub and using NatDevice requires an active [NatML Cloud](https://www.natml.ai/pricing) subscription:
+
+![project settings](https://github.com/natmlx/NatDevice/raw/main/.media/key.png)
 
 ## Requirements
 - Unity 2020.3+
@@ -10,8 +15,11 @@ This is an example project which integrates the NatML deep learning API with the
 ## Supported Platforms
 - Android API level 24+
 - iOS 13+
-- macOS 10.15+
-- Windows 10 (64-bit)
+- macOS 10.15+ (Apple Silicon and Intel)
+- Windows 10+ (64-bit only)
+- WebGL:
+    - Chrome 91+
+    - Firefox 90+
 
 ## Resources
 - Join the [NatML community on Discord](https://hub.natml.ai/community).
