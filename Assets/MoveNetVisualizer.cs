@@ -17,25 +17,36 @@ namespace NatML.Examples.Visualizers {
     [RequireComponent(typeof(RawImage), typeof(AspectRatioFitter))]
     public sealed class MoveNetVisualizer : MonoBehaviour {
 
+        #region --Inspector--
+        [SerializeField]
+        public RectTransform keypoint;
+        #endregion
+
+
         #region --Client API--
+        /// <summary>
+        /// Pose source image.
+        /// </summary>
+        public Texture2D image {
+            get => rawImage.texture as Texture2D;
+            set {
+                rawImage.texture = value;
+                aspectFitter.aspectRatio = (float)value.width / value.height;
+            }
+        }
+
         /// <summary>
         /// Render a body pose.
         /// </summary>
-        /// <param name="image">Image which body pose is generated from.</param>
         /// <param name="pose">Body pose to render.</param>
         /// <param name="confidenceThreshold">Keypoints with confidence lower than this value are not rendered.</param>
-        public void Render (Texture image, MoveNetPredictor.Pose pose) {
+        public void Render (MoveNetPredictor.Pose pose) {
             // Delete current
             foreach (var point in currentPoints)
                 GameObject.Destroy(point.gameObject);
-            currentPoints.Clear();
-            // Display image
-            var imageTransform = transform as RectTransform;
-            var rawImage = GetComponent<RawImage>();
-            var aspectFitter = GetComponent<AspectRatioFitter>();
-            rawImage.texture = image;
-            aspectFitter.aspectRatio = (float)image.width / image.height;
+            currentPoints.Clear();            
             // Render keypoints
+            var imageTransform = transform as RectTransform;
             foreach (var point in pose) {
                 // Instantiate
                 var anchor = Instantiate(keypoint, transform);
@@ -53,8 +64,14 @@ namespace NatML.Examples.Visualizers {
 
 
         #region --Operations--
-        [SerializeField] RectTransform keypoint;
-        readonly List<RectTransform> currentPoints = new List<RectTransform>();
+        private RawImage rawImage;
+        private AspectRatioFitter aspectFitter;
+        private readonly List<RectTransform> currentPoints = new List<RectTransform>();
+
+        void Awake () {
+            rawImage = GetComponent<RawImage>();
+            aspectFitter = GetComponent<AspectRatioFitter>();
+        }
         #endregion
     }
 }

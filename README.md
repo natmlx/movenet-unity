@@ -1,16 +1,19 @@
-# MoveNet Sample
+# MoveNet
 
 ![demo](demo.gif)
 
-Sample project which integrates the NatML deep learning API with the NatDevice media device API for realtime pose detection.
+MoveNet single body pose detection from Google MediaPipe.
 
-## Setup Instructions
-Retrieve your access key from [NatML Hub](https://hub.natml.ai/profile) and add it to your Project Settings. Note that fetching the MoveNet ML model from NatML Hub and using NatDevice requires an active [NatML Cloud](https://www.natml.ai/pricing) subscription:
+## Running the Sample
+Retrieve your access key from [NatML Hub](https://hub.natml.ai/profile) and add it to your Project Settings. Note that running the sample code requires an active [NatML Cloud](https://www.natml.ai/pricing) subscription:
 
 ![project settings](https://github.com/natmlx/NatDevice/raw/main/.media/key.png)
 
+## Using the Predictor in a Different Project
+[See the predictor README for more details](Packages/ai.natml.vision.movenet/README.md).
+
 ## Requirements
-- Unity 2020.3+
+- Unity 2021.2+
 
 ## Supported Platforms
 - Android API level 24+

@@ -44,14 +44,10 @@ namespace NatML.Examples {
             cameraDevice.StartRunning(previewTextureOutput);
             // Display the preview texture
             var previewTexture = await previewTextureOutput;
-            rawImage.texture = previewTexture;
-            aspectFitter.aspectRatio = (float)previewTexture.width / previewTexture.height;
-            // Fetch the MoveNet model
-            Debug.Log("Fetching model from NatML...");
-            modelData = await MLModelData.FromHub("@natsuite/movenet");
-            // Deserialize the model
-            model = modelData.Deserialize();
+            visualizer.image = previewTexture;
             // Create the MoveNet predictor
+            modelData = await MLModelData.FromHub("@natsuite/movenet");
+            model = modelData.Deserialize();
             predictor = new MoveNetPredictor(model);
         }
 
@@ -59,14 +55,13 @@ namespace NatML.Examples {
             // Check that the predictor has been created
             if (predictor == null)
                 return;
-            // Create the input feature
-            var previewTexture = previewTextureOutput.texture;
-            var inputFeature = new MLImageFeature(previewTexture.GetRawTextureData<byte>(), previewTexture.width, previewTexture.height);
-            (inputFeature.mean, inputFeature.std) = modelData.normalization;
+            // Create the image feature
+            var imageFeature = new MLImageFeature(previewTextureOutput.texture);
+            (imageFeature.mean, imageFeature.std) = modelData.normalization;
             // Detect
-            var pose = predictor.Predict(inputFeature);
+            var pose = predictor.Predict(imageFeature);
             // Visualize
-            visualizer.Render(previewTexture, pose);
+            visualizer.Render(pose);
         }
 
         void OnDisable () {

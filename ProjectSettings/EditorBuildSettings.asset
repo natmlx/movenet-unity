@@ -11,5 +11,5 @@ EditorBuildSettings:
   m_configObjects:
     ai.natml.hub.settings: {fileID: 11400000, guid: 633f8a0c36c194ecebcf5a3dc332a64b,
       type: 2}
-    ai.natml.natdevice.settings: {fileID: 11400000, guid: 8aad10ca7454c45808674ec2bc2fd174,
+    ai.natml.natdevice.settings: {fileID: 11400000, guid: be4bc7d5e379c4d938dacc2a16d8b2da,
       type: 2}
