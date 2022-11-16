@@ -6,66 +6,47 @@
 namespace NatML.Examples {
 
     using UnityEngine;
-    using UnityEngine.UI;
     using NatML;
-    using NatML.Devices;
-    using NatML.Devices.Outputs;
-    using NatML.Features;
+    using NatML.VideoKit;
     using NatML.Vision;
     using Visualizers;
 
     public class MoveNetSample : MonoBehaviour {
 
-        [Header(@"UI")]
-        public RawImage rawImage;
-        public AspectRatioFitter aspectFitter;
-        public MoveNetVisualizer visualizer;
+        [Header(@"VideoKit")]
+        public VideoKitCameraManager cameraManager;
 
-        private CameraDevice cameraDevice;
-        private TextureOutput previewTextureOutput;
+        [Header(@"UI")]
+        public MoveNetVisualizer visualizer;
 
         private MLModelData modelData;
         private MLModel model;
         private MoveNetPredictor predictor;
 
-        async void Start () {
-            // Request camera permissions
-            var permissionStatus = await MediaDeviceQuery.RequestPermissions<CameraDevice>();
-            if (permissionStatus != PermissionStatus.Authorized) {
-                Debug.LogError(@"User did not grant camera permissions");
-                return;
-            }
-            // Get the default camera device
-            var query = new MediaDeviceQuery(MediaDeviceCriteria.CameraDevice);
-            cameraDevice = query.current as CameraDevice;
-            // Start the camera preview
-            cameraDevice.previewResolution = (1280, 720);
-            previewTextureOutput = new TextureOutput();
-            cameraDevice.StartRunning(previewTextureOutput);
-            // Display the preview texture
-            var previewTexture = await previewTextureOutput;
-            visualizer.image = previewTexture;
-            // Create the MoveNet predictor
+        private async void Start () {
+            // Fetch the MoveNet model data
             modelData = await MLModelData.FromHub("@natsuite/movenet");
-            model = modelData.Deserialize();
+            // Create the model
+            model = new MLEdgeModel(modelData);
+            // Create the MoveNet predictor
             predictor = new MoveNetPredictor(model);
+            // Listen for camera frames
+            cameraManager.OnFrame.AddListener(OnCameraFrame);
         }
 
-        void Update () {
-            // Check that the predictor has been created
-            if (predictor == null)
-                return;
-            // Create the image feature
-            var imageFeature = new MLImageFeature(previewTextureOutput.texture);
-            (imageFeature.mean, imageFeature.std) = modelData.normalization;
-            // Detect
-            var pose = predictor.Predict(imageFeature);
+        private void OnCameraFrame (CameraFrame frame) {
+            // Predict
+            var feature = frame.feature;
+            (feature.mean, feature.std) = modelData.normalization;
+            var pose = predictor.Predict(feature);
             // Visualize
             visualizer.Render(pose);
         }
 
-        void OnDisable () {
-            // Dispose model
+        private void OnDisable () {
+            // Stop listening for camera frames
+            cameraManager.OnFrame.RemoveListener(OnCameraFrame);
+            // Dispose the model
             model?.Dispose();
         }
     }
