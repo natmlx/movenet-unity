@@ -5,7 +5,7 @@
 MoveNet single body pose detection from Google MediaPipe.
 
 ## Running the Sample
-Retrieve your access key from [NatML Hub](https://hub.natml.ai/profile) and add it to your Project Settings. Note that running the sample code requires an active [NatML MediaKit](https://www.natml.ai/pricing) subscription:
+Retrieve your access key from [NatML Hub](https://hub.natml.ai/profile) and add it to your Project Settings:
 
 ![project settings](https://github.com/natmlx/NatDevice/raw/main/.media/key.png)
 
@@ -25,11 +25,10 @@ Retrieve your access key from [NatML Hub](https://hub.natml.ai/profile) and add 
     - Firefox 90+
 
 ## Resources
-- Join the [NatML community on Discord](https://hub.natml.ai/community).
+- Join the [NatML community on Discord](https://natml.ai/community).
 - See the [NatML documentation](https://docs.natml.ai/unity).
 - See the [VideoKit documentation](https://docs.natml.ai/videokit).
 - Check out [NatML on GitHub](https://github.com/natmlx).
-- Read the [NatML blog](https://blog.natml.ai/).
 - Contact us at [hi@natml.ai](mailto:hi@natml.ai).
 
 Thank you very much!

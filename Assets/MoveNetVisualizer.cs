@@ -1,13 +1,12 @@
 /*
 *   MoveNet
-*   Copyright (c) 2022 NatML Inc. All Rights Reserved.
+*   Copyright © 2023 NatML Inc. All Rights Reserved.
 */
 
 namespace NatML.Examples.Visualizers {
 
     using System.Collections.Generic;
     using UnityEngine;
-    using UnityEngine.UI;
     using NatML.Vision;
     using NatML.VideoKit.UI;
 

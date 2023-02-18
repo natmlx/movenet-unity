@@ -13,7 +13,7 @@ Add the following items to your Unity project's `Packages/manifest.json`:
     }
   ],
   "dependencies": {
-    "ai.natml.vision.movenet": "1.0.4"
+    "ai.natml.vision.movenet": "1.0.5"
   }
 }
 ```
@@ -21,28 +21,16 @@ Add the following items to your Unity project's `Packages/manifest.json`:
 ## Predicting Pose in an Image
 First, create the MoveNet predictor:
 ```csharp
-// Fetch the model data from NatML Hub
-var modelData = await MLModelData.FromHub("@natsuite/movenet");
-// Deserialize the model
-var model = modelData.Deserialize();
 // Create the MoveNet predictor
-var predictor = new MoveNetPredictor(model);
+var predictor = await MoveNetPredictor.Create();
 ```
 
-Then create an input feature:
+Then detect the body pose in an image:
 ```csharp
-// Create image feature
+// Given an image
 Texture2D image = ...;
-var input = new MLImageFeature(image);
-// Set the normalization and aspect mode
-(input.mean, input.std) = modelData.normalization;
-input.aspectMode = modelData.aspectMode;
-```
-
-Finally, detect the body pose in an image:
-```csharp
 // Detect the body pose
-MoveNetPredictor.Pose pose = predictor.Predict(input);
+MoveNetPredictor.Pose pose = predictor.Predict(image);
 ```
 ___
 
@@ -52,8 +40,7 @@ ___
 ## Quick Tips
 - Discover more ML models on [NatML Hub](https://hub.natml.ai).
 - See the [NatML documentation](https://docs.natml.ai/unity).
-- Join the [NatML community on Discord](https://hub.natml.ai/community).
-- Discuss [NatML on Unity Forums](https://forum.unity.com/threads/open-beta-natml-machine-learning-runtime.1109339/).
+- Join the [NatML community on Discord](https://natml.ai/community).
 - Contact us at [hi@natml.ai](mailto:hi@natml.ai).
 
 Thank you very much!

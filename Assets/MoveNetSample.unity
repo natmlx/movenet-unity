@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.4440765, g: 0.49331635, b: 0.57239074, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -286,11 +286,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resolution: 3
-  capabilities: 1
+  capabilities: 2
   playOnAwake: 1
   focusMode: 0
   exposureMode: 0
-  OnFrame:
+  OnCameraFrame:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &705507993
@@ -588,6 +588,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraManager: {fileID: 452010845}
   viewMode: 0
+  focusMode: 0
+  exposureMode: 0
+  zoomMode: 0
+  OnPresent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1421665948
 GameObject:
   m_ObjectHideFlags: 0
@@ -618,6 +624,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
   m_HorizontalAxis: Horizontal
   m_VerticalAxis: Vertical
   m_SubmitButton: Submit

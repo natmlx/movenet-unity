@@ -1,11 +1,12 @@
 /* 
 *   MoveNet
-*   Copyright (c) 2022 NatML Inc. All Rights Reserved.
+*   Copyright © 2023 NatML Inc. All Rights Reserved.
 */
 
 namespace NatML.Vision {
 
     using System;
+    using System.Threading.Tasks;
     using NatML.Features;
     using NatML.Internal;
     using NatML.Types;
@@ -16,16 +17,6 @@ namespace NatML.Vision {
     public sealed partial class MoveNetPredictor : IMLPredictor<MoveNetPredictor.Pose> {
 
         #region --Client API--
-        /// <summary>
-        /// Create the MoveNet predictor.
-        /// </summary>
-        /// <param name="model">MoveNet ML model.</param>
-        /// <param name="smoothing">Apply smoothing filter to detected points.</param>
-        public MoveNetPredictor (MLModel model, bool smoothing = true) {
-            this.model = model as MLEdgeModel;
-            this.filter = smoothing ? new OneEuroFilter(0.5f, 3f, 1f) : null;
-        }
-
         /// <summary>
         /// Detect the body pose in an image.
         /// </summary>
@@ -38,7 +29,10 @@ namespace NatML.Vision {
             // Check type
             var input = inputs[0];
             if (!MLImageType.FromType(input.type))
-                throw new ArgumentException(@"MoveNet predictor expects an an array or image feature", nameof(inputs));     
+                throw new ArgumentException(@"MoveNet predictor expects an an array or image feature", nameof(inputs));
+            // Preprocess
+            if (input is MLImageFeature imageFeature)
+                (imageFeature.mean, imageFeature.std) = model.normalization;
             // Predict
             using var inputFeature = (input as IMLEdgeFeature).Create(model.inputs[0]);
             using var outputFeatures = model.Predict(inputFeature);
@@ -49,6 +43,28 @@ namespace NatML.Vision {
             var pose = new Pose(landmarks);
             return pose;
         }
+
+        /// <summary>
+        /// Dispose the predictor and release resources.
+        /// </summary>
+        public void Dispose () => model.Dispose();
+
+        /// <summary>
+        /// Create the MoveNet predictor.
+        /// </summary>
+        /// <param name="smoothing">Apply smoothing filter to detected points.</param>
+        /// <param name="configuration">Edge model configuration.</param>
+        /// <param name="accessKey">NatML access key.</param>
+        public static async Task<MoveNetPredictor> Create (
+            bool smoothing = true,
+            MLEdgeModel.Configuration configuration = null,
+            string accessKey = null
+        ) {
+            var model = await MLEdgeModel.Create("@natsuite/movenet", configuration, accessKey);
+            var filter = smoothing ? new OneEuroFilter(0.5f, 3f, 1f) : null;
+            var predictor = new MoveNetPredictor(model, filter);
+            return predictor;
+        }
         #endregion
 
 
@@ -56,7 +72,10 @@ namespace NatML.Vision {
         private readonly MLEdgeModel model;
         private readonly OneEuroFilter filter;
 
-        void IDisposable.Dispose () { } // Not used
+        private MoveNetPredictor (MLEdgeModel model, OneEuroFilter filter) {
+            this.model = model;
+            this.filter = filter;
+        }
         #endregion
     }
 }
