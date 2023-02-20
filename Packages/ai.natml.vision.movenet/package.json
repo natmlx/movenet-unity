@@ -1,11 +1,11 @@
 {
     "name": "ai.natml.vision.movenet",
-    "version": "1.0.5",
+    "version": "1.0.6",
     "displayName": "MoveNet",
     "description": "Realtime pose detection with MediaPipe MoveNet.",
     "unity": "2021.2",
     "dependencies": {
-        "ai.natml.natml": "1.1.1"
+        "ai.natml.natml": "1.1.2"
     },
     "keywords": [
         "natml",

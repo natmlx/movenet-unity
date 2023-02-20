@@ -13,7 +13,7 @@ Add the following items to your Unity project's `Packages/manifest.json`:
     }
   ],
   "dependencies": {
-    "ai.natml.vision.movenet": "1.0.5"
+    "ai.natml.vision.movenet": "1.0.6"
   }
 }
 ```

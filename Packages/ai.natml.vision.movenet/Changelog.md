@@ -1,3 +1,6 @@
+## 1.0.6
++ Upgraded to NatML 1.1.2.
+
 ## 1.0.5
 + Upgraded to NatML 1.1.
 
