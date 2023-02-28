@@ -285,9 +285,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98622613d505143a9a06b4b11b0a82cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resolution: 3
   capabilities: 2
   playOnAwake: 1
+  _facing: 1
+  resolution: 3
   focusMode: 0
   exposureMode: 0
   OnCameraFrame:
@@ -485,6 +486,7 @@ GameObject:
   - component: {fileID: 1331141383}
   - component: {fileID: 1331141386}
   - component: {fileID: 1331141382}
+  - component: {fileID: 1331141387}
   m_Layer: 5
   m_Name: Preview
   m_TagString: Untagged
@@ -594,6 +596,19 @@ MonoBehaviour:
   OnPresent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1331141387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1331141380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates: []
 --- !u!1 &1421665948
 GameObject:
   m_ObjectHideFlags: 0

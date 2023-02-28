@@ -22,17 +22,13 @@ namespace NatML.Vision {
         /// </summary>
         /// <param name="inputs">Input image.</param>
         /// <returns>Detected body pose.</returns>
-        public Pose Predict (params MLFeature[] inputs) {
-            // Check
-            if (inputs.Length != 1)
-                throw new ArgumentException(@"MoveNet predictor expects a single feature", nameof(inputs));
-            // Check type
-            var input = inputs[0];
-            if (!MLImageType.FromType(input.type))
-                throw new ArgumentException(@"MoveNet predictor expects an an array or image feature", nameof(inputs));
+        public Pose Predict (params MLFeature[] inputs) {          
             // Preprocess
-            if (input is MLImageFeature imageFeature)
-                (imageFeature.mean, imageFeature.std) = model.normalization;
+            var input = inputs[0];
+            if (input is MLImageFeature image) {
+                image.aspectMode = model.aspectMode;
+                (image.mean, image.std) = model.normalization;
+            }
             // Predict
             using var inputFeature = (input as IMLEdgeFeature).Create(model.inputs[0]);
             using var outputFeatures = model.Predict(inputFeature);
