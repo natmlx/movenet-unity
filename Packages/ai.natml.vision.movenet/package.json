@@ -1,11 +1,11 @@
 {
     "name": "ai.natml.vision.movenet",
-    "version": "1.0.7",
+    "version": "1.0.8",
     "displayName": "MoveNet",
     "description": "Realtime pose detection with MediaPipe MoveNet.",
     "unity": "2021.2",
     "dependencies": {
-        "ai.natml.natml": "1.1.3"
+        "ai.natml.natml": "1.1.5"
     },
     "keywords": [
         "natml",
@@ -24,5 +24,5 @@
         "url": "https://github.com/natmlx"
     },
     "license": "Apache-2.0",
-    "repository": "github:natml-hub/MoveNet"
+    "repository": "github:natmlx/movenet-unity"
 }

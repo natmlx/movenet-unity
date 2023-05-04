@@ -18,6 +18,11 @@ namespace NatML.Vision {
 
         #region --Client API--
         /// <summary>
+        /// Predictor tag.
+        /// </summary>
+        public const string Tag = "@natsuite/movenet";
+
+        /// <summary>
         /// Detect the body pose in an image.
         /// </summary>
         /// <param name="inputs">Input image.</param>
@@ -56,7 +61,7 @@ namespace NatML.Vision {
             MLEdgeModel.Configuration configuration = null,
             string accessKey = null
         ) {
-            var model = await MLEdgeModel.Create("@natsuite/movenet", configuration, accessKey);
+            var model = await MLEdgeModel.Create(Tag, configuration, accessKey);
             var filter = smoothing ? new OneEuroFilter(0.5f, 3f, 1f) : null;
             var predictor = new MoveNetPredictor(model, filter);
             return predictor;
