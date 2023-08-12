@@ -1,3 +1,6 @@
+## 1.0.9
++ Upgraded to NatML 1.1.15.
+
 ## 1.0.8
 + Added `MoveNetPredictor.Tag` constant string for enabling model embedding.
 + Upgraded to NatML 1.1.5.

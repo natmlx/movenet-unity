@@ -6,8 +6,8 @@
 namespace NatML.Examples {
 
     using UnityEngine;
-    using NatML.VideoKit;
     using NatML.Vision;
+    using VideoKit;
     using Visualizers;
 
     public class MoveNetSample : MonoBehaviour {

@@ -13,7 +13,7 @@ Add the following items to your Unity project's `Packages/manifest.json`:
     }
   ],
   "dependencies": {
-    "ai.natml.vision.movenet": "1.0.8"
+    "ai.natml.vision.movenet": "1.0.9"
   }
 }
 ```
@@ -35,7 +35,7 @@ MoveNetPredictor.Pose pose = predictor.Predict(image);
 ___
 
 ## Requirements
-- Unity 2021.2+
+- Unity 2022.3+
 
 ## Quick Tips
 - Discover more ML models on [NatML Hub](https://hub.natml.ai).

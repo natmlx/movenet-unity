@@ -8,7 +8,7 @@ namespace NatML.Examples.Visualizers {
     using System.Collections.Generic;
     using UnityEngine;
     using NatML.Vision;
-    using NatML.VideoKit.UI;
+    using VideoKit.UI;
 
     /// <summary>
     /// MoveNet body pose visualizer.
